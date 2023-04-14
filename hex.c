@@ -1,14 +1,12 @@
-/* vim: ft=c ff=unix fenc=utf-8
- * file: hex.c
- */
 #include "hex.h"
 
+
 size_t
-hex2bin(const char *hex, size_t hex_len, uint8_t *binary, size_t bin_len)
+hex2bin(const char* hex, size_t hex_len, uint8_t* binary, size_t bin_len)
 {
 	register size_t binpos = 0u;
 	register size_t hexpos = 0u;
-	for (; binpos < bin_len && hexpos < hex_len; hexpos+= 2) {
+	for (; binpos < bin_len && hexpos < hex_len; hexpos += 2) {
 		/* first 4 bits */
 		if (hex[hexpos] >= '0' && hex[hexpos] <= '9') {
 				binary[binpos] = (hex[hexpos] - '0') << 4;
@@ -30,11 +28,12 @@ hex2bin(const char *hex, size_t hex_len, uint8_t *binary, size_t bin_len)
 		/* fullbyte */
 		binpos++;
 	}
+
 	return binpos;
 }
 
 size_t
-bin2hex(uint8_t *binary, size_t bin_len, char *string, size_t str_len)
+bin2hex(uint8_t* binary, size_t bin_len, char* string, size_t str_len)
 {
 	const char hex[16] = "0123456789ABCDEF";
 	size_t i;
@@ -52,6 +51,6 @@ bin2hex(uint8_t *binary, size_t bin_len, char *string, size_t str_len)
 		}
 	}
 	string[i] = '\0';
+
 	return i;
 }
-
